@@ -14,7 +14,7 @@ class GroupsTest < Test::Unit::TestCase
     
 
     should "generate valid get groups" do
-      FakeWeb.register_uri(:get, "https://api.citrixonline.com/G2M/rest/groups", :body => '[{"groupkey":12345},{"groupkey": 54321}]', :content_type => "application/json", :status => ["200", "OK"])
+      FakeWeb.register_uri(:get, "https://api.getgo.com/G2M/rest/groups", :body => '[{"groupkey":12345},{"groupkey": 54321}]', :content_type => "application/json", :status => ["200", "OK"])
       @r = @c.get_groups
       assert_not_nil @r
       assert @r.parsed_response.is_a?(Array)
