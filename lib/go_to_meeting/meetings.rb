@@ -2,23 +2,23 @@ module GoToMeeting
   module Meetings
 
     def get_meeting(meeting_key)
-      self.class.get("meetings/#{meeting_key}")
+      self.class.get("/meetings/#{meeting_key}")
     end
 
     def create_meeting(params)
-      self.class.post("meetings", :body => params.to_json, :format => "HTML")
+      self.class.post("/meetings", :body => params.to_json, :format => "HTML")
     end
 
     def update_meeting(meeting_key, params)
-      self.class.put("meetings/#{meeting_key}", :body => params.to_json)
+      self.class.put("/meetings/#{meeting_key}", :body => params.to_json)
     end
 
     def delete_meeting(meeting_key)
-      self.class.delete("meetings/#{meeting_key}")
+      self.class.delete("/meetings/#{meeting_key}")
     end
 
     def start_meeting(meeting_key)
-      self.class.get("meetings/#{meeting_key}/start")
+      self.class.get("/meetings/#{meeting_key}/start")
     end
 
     # expects a few items
@@ -27,15 +27,15 @@ module GoToMeeting
     # @meetings = @client.get_meetings({"history" => "true", "endDate" => (Time.now - 15).utc.iso8601, "startDate" => (Time.now - (60 * 60 * 24 * 90)).utc.iso8601 })
 
     def get_meetings(query)
-      self.class.get("meetings", :query => query)
+      self.class.get("/meetings", :query => query)
     end
 
     def get_meetings_by_group(group_key, query)
-      self.class.get("groups/#{group_key}/meetings", :query => query)
+      self.class.get("/groups/#{group_key}/meetings", :query => query)
     end
 
     def get_meetings_by_organizer(organizer_key, query)
-      self.class.get("organizers/#{organizer_key}/meetings", :query => query)
+      self.class.get("/organizers/#{organizer_key}/meetings", :query => query)
     end
 
   end
